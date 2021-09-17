@@ -26,8 +26,14 @@ def backgroundColor(dir):
   return (1.0 - t) *  np.array([1.0, 1.0, 1.0]) + t*np.array([0.5, 0.7, 1.0])
 
 def raycolor(ray, sphere):
-  if (hitSphere(sphere, ray)): 
-    return np.array([1.0, 0.0, 0.0])
+
+  t = hitSphere(sphere, ray)
+
+  if (t > 0.0):
+    p = rayAt(ray, t)
+    normal = unitvector(np.array(p - sphere.center))
+    ncolor = 0.5 * (normal + 1) 
+    return (np.array([ncolor[0], ncolor[1], ncolor[2]]))
   else: 
     return backgroundColor(ray.direction)
 
@@ -43,4 +49,4 @@ for j in range(height):
 
     # image[j, i] = np.clip([r, g, b], 0, 1)
 
-plt.imsave('rendered/image0.png', image)
+plt.imsave('rendered/image3.png', image)

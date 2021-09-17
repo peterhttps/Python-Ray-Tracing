@@ -1,5 +1,5 @@
 import numpy as np
-from numpy import linalg
+import math
 
 def vec3(x, y, z):
   return np.array([x, y, z])
@@ -21,6 +21,9 @@ class Ray:
     self.origin = origin
     self.direction = unitvector(direction) 
 
+def rayAt(ray, t):
+  return ray.origin + t * ray.direction
+
 class Sphere:
   def __init__(self, center, radius):
     self.center = center
@@ -30,12 +33,13 @@ class Sphere:
 def hitSphere(sphere, ray):
   # bhaskara
   a = normsquared(ray.direction)
-  oc = sphere.center - ray.origin
-  b = 2.0 * dot(ray.direction, oc)
+  oc = ray.origin - sphere.center 
+  halfb = dot(ray.direction, oc)
   c = normsquared(oc) - sphere.radius**2
-  discriminant = (b*b) - 4 * a * c
+  discriminant = (halfb*halfb) - a * c
 
   if (discriminant <= 0):
-    return False
+    return -1.0
   else: 
-    return True
+    return (-halfb - math.sqrt(discriminant)) / (a)
+
