@@ -21,10 +21,17 @@ lowerLeftCorner = origin - (horizontal / 2) - (vertical / 2) - vec3(0.0, 0.0, fo
 
 print("Imagem size %d x %d" % (width, height))
 
-def raycolor(ray):
-  t = 0.5 * (ray.direction[1] + 1.0)
+def backgroundColor(dir):
+  t = 0.5 * (dir[1] + 1.0)
   return (1.0 - t) *  np.array([1.0, 1.0, 1.0]) + t*np.array([0.5, 0.7, 1.0])
 
+def raycolor(ray, sphere):
+  if (hitSphere(sphere, ray)): 
+    return np.array([1.0, 0.0, 0.0])
+  else: 
+    return backgroundColor(ray.direction)
+
+s1 = Sphere(vec3(0.0, 0.0, -1.0), 0.5)
 for j in range(height):
   for i in range(width):      
     u = (i - 1) / (width - 1)
@@ -32,7 +39,7 @@ for j in range(height):
     direc = lowerLeftCorner + u*horizontal + v*vertical - origin 
     ray = Ray(origin, direc)
 
-    image[j, i] = np.clip(raycolor(ray), 0, 1)
+    image[j, i] = np.clip(raycolor(ray, s1), 0, 1)
 
     # image[j, i] = np.clip([r, g, b], 0, 1)
 

@@ -5,7 +5,7 @@ def vec3(x, y, z):
   return np.array([x, y, z])
 
 def normsquared(v):
-  return np.linalg.norm(v, ord=2) 
+  return np.linalg.norm(v)**2 
 
 def norm(v):
   return np.linalg.norm(v)
@@ -21,3 +21,21 @@ class Ray:
     self.origin = origin
     self.direction = unitvector(direction) 
 
+class Sphere:
+  def __init__(self, center, radius):
+    self.center = center
+    self.radius = radius
+
+
+def hitSphere(sphere, ray):
+  # bhaskara
+  a = normsquared(ray.direction)
+  oc = sphere.center - ray.origin
+  b = 2.0 * dot(ray.direction, oc)
+  c = normsquared(oc) - sphere.radius**2
+  discriminant = (b*b) - 4 * a * c
+
+  if (discriminant <= 0):
+    return False
+  else: 
+    return True
