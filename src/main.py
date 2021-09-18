@@ -26,19 +26,26 @@ def backgroundColor(dir):
   t = 0.5 * (dir[1] + 1.0)
   return (1.0 - t) *  np.array([1.0, 1.0, 1.0]) + t*np.array([0.5, 0.7, 1.0])
 
-def raycolor(ray, sphere):
+def raycolor(ray, scenelist):
   record = HitRecord()
 
   # hitSphere(sphere, ray, 0.0, np.Infinity, record)
 
-  if (hitSphere(sphere, ray, 0.0, np.Infinity, record)):
-    
+  if (sceneListhit(scenelist, ray, 0.0, np.Infinity, record)):
+    # Intersection
     ncolor = 0.5 * (record.normal + 1) 
     return (np.array([ncolor[0], ncolor[1], ncolor[2]]))
   else: 
     return backgroundColor(ray.direction)
 
 s1 = Sphere(vec3(0.0, 0.0, -1.0), 0.5)
+bigradius = 1000
+floor = Sphere(vec3(0.0, -bigradius - 0.5, -1), bigradius)
+
+world = SceneList()
+world.push(s1)
+world.push(floor)
+
 for j in range(height):
   for i in range(width):      
     u = (i - 1) / (width - 1)
@@ -46,6 +53,6 @@ for j in range(height):
     direc = lowerLeftCorner + u*horizontal + v*vertical - origin 
     ray = Ray(origin, direc)
 
-    image[j, i] = np.clip(raycolor(ray, s1), 0, 1)
+    image[j, i] = np.clip(raycolor(ray, world), 0, 1)
 
-plt.imsave('src/rendered/image4.png', image)
+plt.imsave('src/rendered/image5.png', image)

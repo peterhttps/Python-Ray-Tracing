@@ -1,5 +1,6 @@
 import numpy as np
 import math
+from geometries import *
 
 def vec3(x, y, z):
   return np.array([x, y, z])
@@ -18,6 +19,9 @@ def unitvector(v):
 
 def rayAt(ray, t):
   return ray.origin + t * ray.direction
+
+def push(scenelist, object):
+  scenelist.objects.append(object)
 
 def hitSphere(sphere, ray, t_min, t_max, record):
   # bhaskara
@@ -50,3 +54,18 @@ def hitSphere(sphere, ray, t_min, t_max, record):
     return True
 
 
+def sceneListhit(sceneList, ray, t_min, t_max, record):
+  hitAnything = False
+  tempRecord = HitRecord()
+  closestSoFar = t_max
+
+  for object in sceneList.objects:
+    if (hitSphere(object, ray, t_min, closestSoFar, tempRecord)):
+      hitAnything = True
+      closestSoFar = tempRecord.t
+
+      record.p = tempRecord.p
+      record.t = tempRecord.t
+      record.normal = tempRecord.normal
+
+  return hitAnything
