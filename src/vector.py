@@ -33,13 +33,20 @@ def hitSphere(sphere, ray, t_min, t_max, record):
     sqrd = math.sqrt(discriminant)
     t = (-halfb - sqrd) / a
     if (t < t_min or t > t_max):
-      t = (-halfb - sqrd) / a
+      t = (-halfb + sqrd) / a
       if (t < t_min or t > t_max):
         return False
       
-      record.t = t
-      record.p = rayAt(ray, t)
-      normal = unitvector(np.array(record.p - sphere.center))
-
+    record.t = t
+    record.p = rayAt(ray, t)
+    outword_normal = unitvector(np.array(record.p - sphere.center))
+    front_face = dot(ray.direction, outword_normal) < 0
+    # print(front_face)
+    # record.normal = front_face if outword_normal else -outword_normal
+    if (front_face):
+      record.normal = outword_normal
+    else:
+      record.normal = -outword_normal
+    return True
 
 
