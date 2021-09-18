@@ -24,26 +24,31 @@ print("Imagem size %d x %d" % (width, height))
 
 def backgroundColor(dir):
   t = 0.5 * (dir[1] + 1.0)
-  return (1.0 - t) *  np.array([1.0, 1.0, 1.0]) + t*np.array([0.5, 0.7, 1.0])
+  return (1.0 - t) *  np.array([0.7, 0.8, 0.9]) + t*np.array([0.05, 0.05, 0.2])
 
 def raycolor(ray, scenelist):
   record = HitRecord()
 
   # hitSphere(sphere, ray, 0.0, np.Infinity, record)
 
-  if (sceneListhit(scenelist, ray, 0.0, np.Infinity, record)):
-    # Intersection
-    ncolor = 0.5 * (record.normal + 1) 
-    return (np.array([ncolor[0], ncolor[1], ncolor[2]]))
-  else: 
-    return backgroundColor(ray.direction)
+  orgn = np.array(ray.origin)
+  dir = np.array(ray.direction)
+  while (sceneListhit(scenelist, Ray(orgn, dir), 0.0001, np.Infinity, record)):
+    dir = unitvector(reflect(dir, record.normal))
+    orgn = record.p
+
+  return backgroundColor(dir)
 
 s1 = Sphere(vec3(0.0, 0.0, -1.0), 0.5)
+s2 = Sphere(vec3(-1.0, 0.0, -2.0), 0.5)
+s3 = Sphere(vec3(0.5, 1.5, -1.5), 0.5)
 bigradius = 1000
 floor = Sphere(vec3(0.0, -bigradius - 0.5, -1), bigradius)
 
 world = SceneList()
 world.push(s1)
+world.push(s2)
+world.push(s3)
 world.push(floor)
 
 for j in range(height):
@@ -54,5 +59,5 @@ for j in range(height):
     ray = Ray(origin, direc)
 
     image[j, i] = np.clip(raycolor(ray, world), 0, 1)
-
-plt.imsave('src/rendered/image5.png', image)
+  print(j, height)
+plt.imsave('src/rendered/image8.png', image)

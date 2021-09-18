@@ -69,3 +69,7 @@ def sceneListhit(sceneList, ray, t_min, t_max, record):
       record.normal = tempRecord.normal
 
   return hitAnything
+
+def reflect(direction, normal):
+  # print("sans")
+  return direction - 2.0 * dot(direction, normal) * normal
