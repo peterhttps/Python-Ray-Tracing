@@ -49,4 +49,4 @@ for j in range(height):
 
     # image[j, i] = np.clip([r, g, b], 0, 1)
 
-plt.imsave('rendered/image3.png', image)
+plt.imsave('src/rendered/image3.png', image)
