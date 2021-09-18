@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from vector import *
+from geometries import *
 import math
 
 
@@ -46,7 +47,5 @@ for j in range(height):
     ray = Ray(origin, direc)
 
     image[j, i] = np.clip(raycolor(ray, s1), 0, 1)
-
-    # image[j, i] = np.clip([r, g, b], 0, 1)
 
 plt.imsave('src/rendered/image3.png', image)

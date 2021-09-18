@@ -16,19 +16,8 @@ def dot(v1, v2):
 def unitvector(v):
   return v / norm(v)
 
-class Ray:
-  def __init__(self, origin, direction):
-    self.origin = origin
-    self.direction = unitvector(direction) 
-
 def rayAt(ray, t):
   return ray.origin + t * ray.direction
-
-class Sphere:
-  def __init__(self, center, radius):
-    self.center = center
-    self.radius = radius
-
 
 def hitSphere(sphere, ray):
   # bhaskara
