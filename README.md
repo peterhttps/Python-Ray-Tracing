@@ -4,6 +4,12 @@
 <img src="https://user-images.githubusercontent.com/20236175/133912382-94cdd217-29b3-4100-ba8b-4eaadb58d31b.png" />
 </p>
 
+## Introduction
+A repo to learn how Ray tracing algorithms works and how to implement them. 
+Choosed Python for start and soon it will be rewrited on a more low level language.
+
+`Feel free to contribute`
+
 ## Overview
 - [x] Output an image
 - [x] Casting rays into the scene
