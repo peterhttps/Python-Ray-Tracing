@@ -17,7 +17,7 @@ Choosed Python for start and soon it will be rewrited on a more low level langua
 - [x] Shading with surface normals
 - [x] Listing hitable objects
 - [x] Creating objects with full reflection
-- [ ] Antialiasing
+- [x] Antialiasing
 - [ ] Improving data structure
 - [ ] Adding difuse materials
 - [ ] Lambertian Reflection
