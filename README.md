@@ -23,6 +23,9 @@ Choosed Python for start and soon it will be rewrited on a more low level langua
 - [ ] Lambertian Reflection
 - [ ] Metalic objects
 
+- Utils
+- [ ] Organize code
+
 Ray Tracing algorithm implemented in Python. 
 Main logic comes of book [Ray Tracing in one Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html) and playlist [Programação Dinâmica - Computação Gráfica](https://www.youtube.com/playlist?list=PL5TJqBvpXQv5zNlgvgH2HGuhZHpnkT3oo)
 
