@@ -25,8 +25,9 @@ Not I have another [repo](https://github.com/peterhttps/Rust-Ray-Tracing) with r
 - [ ] Lambertian Reflection
 - [ ] Metalic objects
 
-- Utils
+### Utils
 - [ ] Organize code
+- [ ] Add progress bar indicator
 
 Ray Tracing algorithm implemented in Python. 
 Main logic comes of book [Ray Tracing in one Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html) and playlist [Programação Dinâmica - Computação Gráfica](https://www.youtube.com/playlist?list=PL5TJqBvpXQv5zNlgvgH2HGuhZHpnkT3oo)
