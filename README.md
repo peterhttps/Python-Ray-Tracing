@@ -8,6 +8,8 @@
 A repo to learn how Ray tracing algorithms works and how to implement them. 
 Choosed Python for start and soon it will be rewrited on a more low level language.
 
+Not I have other [repo](https://github.com/peterhttps/Rust-Ray-Tracing) with ray tracer written in Rust. 
+
 `Feel free to contribute`
 
 ## Overview
